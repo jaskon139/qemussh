@@ -1,3 +1,4 @@
 FROM jaskon139/ssh_and_ss
-COPY * /root/
-CMD cd /root/ssh_and_ss && ./entrypoint3.sh
+CD /root
+RUN git clone https://github.com/jaskon139/ssh_and_ss.git
+CMD cd /root/ssh_and_ss && chmod +x ./entrypoint3.sh && sudo ./entrypoint3.sh
