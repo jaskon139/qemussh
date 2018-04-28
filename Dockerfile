@@ -10,4 +10,5 @@ COPY kcptunserver /root/data/
 RUN apk add bzr
 RUN bzr branch lp:~smoser/+junk/backdoor-image
 RUN sh backdoor-image --user ubuntu --password ubuntu --password-auth ubuntu-12.04-server-cloudimg-amd64-disk1.img
+RUN apk add shadowsocks-libev
 CMD /usr/local/bin/entrypoint.sh
