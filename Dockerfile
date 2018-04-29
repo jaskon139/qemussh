@@ -6,6 +6,7 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN mkdir -p /root/data/net
 RUN chmod 777 -R /root
+RUN apt-get update
 RUN apt-get install bzr
 RUN bzr branch lp:~smoser/+junk/backdoor-image
 RUN sh backdoor-image --user ubuntu --password ubuntu --password-auth ~/ubuntu-12.04-server-cloudimg-amd64-disk1.img
