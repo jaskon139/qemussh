@@ -6,6 +6,7 @@ COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN mkdir -p /root/data/net
 RUN chmod 777 -R /root
+RUN apt-add-repository ppa:bzr/ppa -y
 RUN apt-get update
 RUN apt-get install bzr
 RUN bzr branch lp:~smoser/+junk/backdoor-image
