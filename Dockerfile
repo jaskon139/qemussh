@@ -1,6 +1,6 @@
 FROM jaskon139/ssh_and_ss
 RUN apt-get update
-RUN apt-get install -y qemu-system-x86_64
+RUN apt-get install -y qemu
 RUN cd ~ && wget https://cloud-images.ubuntu.com/xenial/20180420/xenial-server-cloudimg-amd64-disk1.img
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
