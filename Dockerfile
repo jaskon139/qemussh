@@ -1,28 +1,14 @@
-FROM grugnog/go-http-tunnel
+FROM var2dan/docker-chisel-ssh
 
 RUN apk update \
 	&& apk add qemu-system-x86_64 git
 
 WORKDIR /root
 
-RUN rm -fr /root/ssh_and_ss && GIT_SSL_NO_VERIFY=true git clone https://github.com/jaskon139/ssh_and_ss.git
+RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/jaskon139/ssh_and_ss.git
 
 COPY * /root/
+RUN chmod +x /root/entrypoint4.sh
 
-# default variables
-ENV COUNTY "US"
-ENV STATE "New Jersey"
-ENV LOCATION "Piscataway"
-ENV ORGANISATION "Ecample"
-ENV ROOT_CN "Root"
-ENV ISSUER_CN "Example Ltd"
-ENV PUBLIC_CN "example.com"
-ENV ROOT_NAME "root"
-ENV ISSUER_NAME "example"
-ENV PUBLIC_NAME "public"
-ENV RSA_KEY_NUMBITS "2048"
-ENV DAYS "365"
-# certificate directories
-ENV CERT_DIR "/etc/ssl/certs"
-
-ENTRYPOINT [ "/entrypoint.sh" ]
+EXPOSE 22 8080
+CMD /usr/sbin/sshd  && /usr/local/bin/chisel server && /root/entrypoint4.sh
