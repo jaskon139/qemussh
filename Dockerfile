@@ -1,16 +1,26 @@
-FROM jaskon139/ssh_and_ss
-RUN apt-get update
-RUN apt-get install -y qemu
-RUN cd ~ && wget https://cloud-images.ubuntu.com/xenial/20180420/xenial-server-cloudimg-amd64-disk1.img
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
-RUN mkdir -p /root/data/net
-RUN chmod 777 -R /root
-RUN apt-add-repository ppa:bzr/ppa -y
-RUN apt-get update
-RUN apt-get install bzr
-RUN bzr branch lp:~smoser/+junk/backdoor-image
-RUN sh backdoor-image --user ubuntu --password ubuntu --password-auth ~/ubuntu-12.04-server-cloudimg-amd64-disk1.img
-RUN ls ~
-EXPOSE 9999/UDP 3824/UDP 
-CMD /usr/local/bin/entrypoint.sh
+FROM grugnog/go-http-tunnel
+
+RUN apk update \
+	&& apk add qemu-system-x86_64 git
+
+WORKDIR /root
+
+RUN rm -fr /root/ssh_and_ss && GIT_SSL_NO_VERIFY=true git clone https://github.com/jaskon139/ssh_and_ss.git
+
+COPY * /root
+
+# default variables
+ENV COUNTY "US"
+ENV STATE "New Jersey"
+ENV LOCATION "Piscataway"
+ENV ORGANISATION "Ecample"
+ENV ROOT_CN "Root"
+ENV ISSUER_CN "Example Ltd"
+ENV PUBLIC_CN "example.com"
+ENV ROOT_NAME "root"
+ENV ISSUER_NAME "example"
+ENV PUBLIC_NAME "public"
+ENV RSA_KEY_NUMBITS "2048"
+ENV DAYS "365"
+
+ENTRYPOINT [ "/entrypoint.sh" ]
