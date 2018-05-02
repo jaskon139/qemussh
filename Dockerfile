@@ -14,5 +14,5 @@ RUN cat /root/ssh_and_ss/ow/* >> /root/ssh_and_ss/ow/ow.img
 
 RUN chmod +x /root/ssh_and_ss/entrypoint4.sh
 
-EXPOSE 22 8080
+EXPOSE 8080
 CMD /root/ssh_and_ss/entrypoint4.sh && /usr/local/bin/chisel server --socks5
