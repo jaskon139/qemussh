@@ -7,7 +7,7 @@ WORKDIR /root
 
 RUN rm -fr /root/ssh_and_ss && GIT_SSL_NO_VERIFY=true git clone https://github.com/jaskon139/ssh_and_ss.git
 
-COPY * /root
+COPY * /root/
 
 # default variables
 ENV COUNTY "US"
