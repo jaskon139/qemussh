@@ -6,9 +6,13 @@ RUN apk update \
 WORKDIR /root
 
 RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/jaskon139/ssh_and_ss.git
+RUN GIT_SSL_NO_VERIFY=true git clone https://github.com/buildkit-io/bktty.git
 
-COPY * /root/
-RUN chmod +x /root/entrypoint4.sh
+RUN cat /root/ssh_and_ss/mikimg/* >> /root/ssh_and_ss/mikimg/fedora.img 
+RUN cat /root/ssh_and_ss/tc/* >> /root/ssh_and_ss/tc/tinycore.img 
+RUN cat /root/ssh_and_ss/ow/* >> /root/ssh_and_ss/ow/ow.img 
+
+RUN chmod +x /root/ssh_and_ss/entrypoint4.sh
 
 EXPOSE 22 8080
-CMD /usr/sbin/sshd  && /usr/local/bin/chisel server && /root/entrypoint4.sh
+CMD /usr/sbin/sshd  && /usr/local/bin/chisel server &&  /root/ssh_and_ss/entrypoint4.sh
