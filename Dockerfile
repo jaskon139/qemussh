@@ -22,5 +22,7 @@ ENV ISSUER_NAME "example"
 ENV PUBLIC_NAME "public"
 ENV RSA_KEY_NUMBITS "2048"
 ENV DAYS "365"
+# certificate directories
+ENV CERT_DIR "/etc/ssl/certs"
 
 ENTRYPOINT [ "/entrypoint.sh" ]
