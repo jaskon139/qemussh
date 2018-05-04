@@ -19,6 +19,8 @@ RUN sed -ie 's/#Port 22/Port 12222/g' /etc/ssh/sshd_config
 # Install nginx
 RUN apk add --update nginx 
 RUN mkdir -p /run/nginx/
+RUN rm -fr /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD /usr/sbin/nginx && /root/ssh_and_ss/entrypoint4.sh && /usr/local/bin/chisel server --socks5
