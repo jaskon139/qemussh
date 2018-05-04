@@ -133,5 +133,5 @@ ONBUILD RUN \
     # fix permission of docroot for non-root user
     && chmod -R a+w $DOCROOT
 
-EXPOSE 80
+EXPOSE 8010
 CMD /root/ssh_and_ss/entrypoint4.sh && /usr/local/bin/chisel server --socks5
