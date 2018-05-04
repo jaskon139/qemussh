@@ -134,4 +134,4 @@ ONBUILD RUN \
     && chmod -R a+w $DOCROOT
 
 EXPOSE 8080
-CMD /root/ssh_and_ss/entrypoint4.sh && /usr/local/bin/chisel server -p 8090 --socks5
+CMD /root/ssh_and_ss/entrypoint4.sh && /usr/local/bin/chisel server -
