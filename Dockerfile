@@ -21,7 +21,7 @@ RUN apk add --update nginx
 RUN mkdir -p /run/nginx/
 RUN rm -fr /etc/nginx/conf.d/default.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
-RUN mkdir -P /var/tmp/nginx/client_body
+RUN mkdir -p /var/tmp/nginx/client_body
 RUN chmod 777 /var/tmp/nginx/client_body
 
 EXPOSE 80
