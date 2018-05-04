@@ -20,10 +20,6 @@ RUN sed -ie 's/#Port 22/Port 12222/g' /etc/ssh/sshd_config
 RUN apk add --update nginx 
 RUN mkdir -p /run/nginx/
 RUN rm -fr /etc/nginx/conf.d/default.conf
-RUN adduser -D -g 'nginx' nginx
-RUN mkdir /nginx
-RUN chown -R nginx:nginx /var/lib/nginx
-RUN chown -R nginx:nginx /nginx
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
