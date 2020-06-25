@@ -1,14 +1,8 @@
-FROM zoobab/openwrt-15.05.1-x86-64-rootfs
-
-EXPOSE 80
-
-RUN mkdir /var/lock && \
-    opkg update && \
-    opkg install uhttpd-mod-lua && \
-    uci set uhttpd.main.interpreter='.lua=/usr/bin/lua' && \
-    uci commit uhttpd
+FROM jaskon139/ssh_and_ss
 
 USER root
 
+COPY identity.* /root/data/net/
+
 # using exec format so that /sbin/init is proc 1 (see procd docs)
-CMD ["/sbin/init"]
+CMD /usr/local/bin/entrypoint.sh
